@@ -1,0 +1,50 @@
+syntax enable
+set number
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/etc/wittekm-vim/.vim/bundle/vundle
+call vundle#rc()
+
+" Bundles
+Bundle 'gmarik/vundle'
+Bundle 'FSwitch'
+Bundle 'Tabular'
+Bundle 'Solarized'
+Bundle 'The-NERD-tree'
+Bundle 'The-NERD-Commenter'
+Bundle 'AddIfndefGuard'
+Bundle 'vim-surround'
+
+" Language support
+Bundle 'Cpp11-Syntax-Support'
+Bundle 'vim-coffee-script'
+
+
+"Bundle settings
+let g:NERDTreeWinSize = 20
+let NERDTreeIgnore = ['\.pyc$', '\.o$']
+
+" Color and syntax
+set background=dark
+colorscheme solarized
+filetype plugin indent on
+set gfn=DejaVu\ Sans\ Mono:h12
+"set gfn=Andale\ Mono:h14
+
+" Tabs!
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
+" Custom commands
+command BS BundleSearch
+command Vimrc e ~/.vimrc
+command VimrcSource source ~/.vimrc
+command PwdHere cd %:p:h
+command Guard call AddIfndefGuard()
+
+" Syntax stuff
+au BufRead,BufNewFile *.cpp set syntax=cpp11
+
