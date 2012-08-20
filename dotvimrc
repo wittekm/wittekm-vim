@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/etc/wittekm-vim/.vim/bundle/vundle
 call vundle#rc()
 
-" Bundles
+""""" Bundles
 Bundle 'gmarik/vundle'
 Bundle 'FSwitch'
 Bundle 'Tabular'
@@ -17,34 +17,42 @@ Bundle 'The-NERD-Commenter'
 Bundle 'AddIfndefGuard'
 Bundle 'vim-surround'
 
-" Language support
+""""" Language support
 Bundle 'Cpp11-Syntax-Support'
 Bundle 'vim-coffee-script'
 
 
-"Bundle settings
+""""" Bundle settings
 let g:NERDTreeWinSize = 20
 let NERDTreeIgnore = ['\.pyc$', '\.o$']
 
-" Color and syntax
+""""" Color and syntax
 set background=dark
+" So the colors work right on my vm at work
+if (match(system("hostname"), "wimax.desktop.amazon.com") != -1)
+    let g:solarized_termcolors=16
+else
+    let g:solarized_termcolors=256
+endif
 colorscheme solarized
 filetype plugin indent on
 set gfn=DejaVu\ Sans\ Mono:h12
 "set gfn=Andale\ Mono:h14
 
-" Tabs!
+
+
+""""" Tabs!
 set expandtab
 set tabstop=4
 set shiftwidth=4
 
-" Custom commands
+""""" Custom commands
 command BS BundleSearch
 command Vimrc e ~/.vimrc
 command VimrcSource source ~/.vimrc
 command PwdHere cd %:p:h
 command Guard call AddIfndefGuard()
 
-" Syntax stuff
+""""" Syntax stuff
 au BufRead,BufNewFile *.cpp set syntax=cpp11
 
