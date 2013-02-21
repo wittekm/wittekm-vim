@@ -16,6 +16,12 @@ Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
 Bundle 'AddIfndefGuard'
 Bundle 'vim-surround'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'rails.vim'
+Bundle 'java_getset.vim'
+Bundle 'csv.vim'
+Bundle 'fugitive.vim'
+Bundle 'Syntastic'
 
 """"" Language support
 Bundle 'Cpp11-Syntax-Support'
@@ -31,28 +37,55 @@ set background=dark
 " So the colors work right on my vm at work
 if (match(system("hostname"), "wimax.desktop.amazon.com") != -1)
     let g:solarized_termcolors=16
+    set gfn=Inconsolata-dz\ 10
 else
     let g:solarized_termcolors=256
+    set gfn=DejaVu\ Sans\ Mono:h12
 endif
 colorscheme solarized
 filetype plugin indent on
-set gfn=DejaVu\ Sans\ Mono:h12
 "set gfn=Andale\ Mono:h14
 
+"""" Keyboard shortcuts
+autocmd VimEnter * nmap <F3> :NERDTreeToggle<CR>
+autocmd VimEnter * imap <F3> <Esc>:NERDTreeToggle<CR>a
+let NERDTreeQuitOnOpen=1
+let NERDTreeWinSize=35
+" rip my tag stack. forever in our hearts
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <Esc>:tabnew<CR>
 
+" strong no hire
+nmap <C-h> :vimgrep // **/*<left><left><left><left><left><left>
 
 """"" Tabs!
 set expandtab
 set tabstop=4
 set shiftwidth=4
 
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
+
+set wrap textwidth=0
+
 """"" Custom commands
 command BS BundleSearch
-command Vimrc e ~/.vimrc
+let g:editvimrc = 'e '.dotvim."/dotvimrc"
+command Vimrc exec g:editvimrc
 command VimrcSource source ~/.vimrc
-command PwdHere cd %:p:h
+command PwdHere exec "cd %:p:h"
 command Guard call AddIfndefGuard()
+
+if (match(system("hostname"), "wimax.desktop.amazon.com") != -1)
+    command P4Add exec "cd %:p:h | exec '!p4 add '.expand('%:t')"
+endif
 
 """"" Syntax stuff
 au BufRead,BufNewFile *.cpp set syntax=cpp11
+autocmd BufNewFile,BufRead *.html.erb set filetype=eruby
 
+"   augroup NO_CURSOR_MOVE_ON_FOCUS
+"     au !
+"     au FocusLost * let g:oldmouse=&mouse | set mouse=
+"     au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
+"   augroup END
