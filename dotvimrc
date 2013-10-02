@@ -1,3 +1,5 @@
+" This entire file is a mess, please don't think it is indicative of anything else I work on.
+
 syntax enable
 set number
 set nocompatible
@@ -16,17 +18,20 @@ Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
 Bundle 'AddIfndefGuard'
 Bundle 'vim-surround'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'rails.vim'
-Bundle 'java_getset.vim'
 Bundle 'csv.vim'
 Bundle 'fugitive.vim'
 Bundle 'Syntastic'
+"Bundle 'vim-symbols-strings' overrides <Leader>g
+Bundle 'rename.vim'
+Bundle 'java_getset.vim'
 
 """"" Language support
 Bundle 'Cpp11-Syntax-Support'
 Bundle 'vim-coffee-script'
-
+Bundle 'sass'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'rails.vim'
+Bundle 'repos-scala/scala-vundle'
 
 """"" Bundle settings
 let g:NERDTreeWinSize = 20
@@ -54,6 +59,9 @@ let NERDTreeWinSize=35
 " rip my tag stack. forever in our hearts
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
+" this is bad since C-w is actually useful
+nnoremap <C-w><C-w> :tabclose<CR>
+inoremap <C-w><C-w> :tabclose<CR>
 
 " strong no hire
 nmap <C-h> :vimgrep // **/*<left><left><left><left><left><left>
@@ -65,6 +73,7 @@ set shiftwidth=4
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype scala setlocal ts=2 sts=2 sw=2 expandtab
 
 set wrap textwidth=0
 
@@ -75,6 +84,8 @@ command Vimrc exec g:editvimrc
 command VimrcSource source ~/.vimrc
 command PwdHere exec "cd %:p:h"
 command Guard call AddIfndefGuard()
+command SaveSesh mksession! ~/etc/wittekm-vim/vim_session.vim
+command LoadSesh source ~/etc/wittekm-vim/vim_session.vim
 
 if (match(system("hostname"), "wimax.desktop.amazon.com") != -1)
     command P4Add exec "cd %:p:h | exec '!p4 add '.expand('%:t')"
@@ -82,7 +93,9 @@ endif
 
 """"" Syntax stuff
 au BufRead,BufNewFile *.cpp set syntax=cpp11
+au BufRead,BufNewFile *.haml set filetype=ruby
 autocmd BufNewFile,BufRead *.html.erb set filetype=eruby
+au BufRead,BufNewFile *.scss set filetype=scss
 
 "   augroup NO_CURSOR_MOVE_ON_FOCUS
 "     au !
