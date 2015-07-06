@@ -5,7 +5,4 @@ let dotvim='~/etc/wittekm-vim'
 source ~/etc/wittekm-vim/dotvimrc   
 "
 
-also you're gonna have to reinstall all those bundles but whatever
-
-
-actually i'm thinking that a symbolic link might be a better way to go truthfully since idk how to make vundle not clone into .vim
+then run :PluginInstall to install everything labeled with ':Plugin'

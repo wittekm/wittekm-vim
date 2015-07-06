@@ -1,37 +1,41 @@
 " This entire file is a mess, please don't think it is indicative of anything else I work on.
 
-syntax enable
-set number
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-set rtp+=~/etc/wittekm-vim/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/etc/wittekm-vim/.vim/bundle/vundle
+call vundle#begin('~/etc/wittekm-vim/plugins')
 
 """"" Bundles
-Bundle 'gmarik/vundle'
-Bundle 'FSwitch'
-Bundle 'Tabular'
-Bundle 'Solarized'
-Bundle 'The-NERD-tree'
-Bundle 'The-NERD-Commenter'
-Bundle 'AddIfndefGuard'
-Bundle 'vim-surround'
-Bundle 'csv.vim'
-Bundle 'fugitive.vim'
-Bundle 'Syntastic'
-"Bundle 'vim-symbols-strings' overrides <Leader>g
-Bundle 'rename.vim'
-Bundle 'java_getset.vim'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'FSwitch'
+Plugin 'Tabular'
+Plugin 'Solarized'
+Plugin 'The-NERD-tree'
+Plugin 'The-NERD-Commenter'
+Plugin 'AddIfndefGuard'
+Plugin 'vim-surround'
+Plugin 'csv.vim'
+Plugin 'fugitive.vim'
+Plugin 'Syntastic'
+"Plugin 'vim-symbols-strings' overrides <Leader>g
+Plugin 'rename.vim'
+Plugin 'java_getset.vim'
 
 """"" Language support
-Bundle 'Cpp11-Syntax-Support'
-Bundle 'vim-coffee-script'
-Bundle 'sass'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'rails.vim'
-Bundle 'repos-scala/scala-vundle'
+Plugin 'Cpp11-Syntax-Support'
+Plugin 'vim-coffee-script'
+Plugin 'sass'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'rails.vim'
+Plugin 'repos-scala/scala-vundle'
+
+call vundle#end()
+
+filetype plugin indent on
+syntax enable
+set number
 
 """"" Bundle settings
 let g:NERDTreeWinSize = 20
