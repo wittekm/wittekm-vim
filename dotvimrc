@@ -30,6 +30,9 @@ Plugin 'sass'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'rails.vim'
 Plugin 'repos-scala/scala-vundle'
+Plugin 'klen/python-mode'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
@@ -78,8 +81,15 @@ set shiftwidth=4
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype scala setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype typescript setlocal ts=2 sts=2 sw=2 expandtab
 
 set wrap textwidth=0
+
+"""" PyMode customization
+let g:pymode_folding = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0
+"""" TODO: Eventually add support for whatever Arc Lint does
 
 """"" Custom commands
 command BS BundleSearch
@@ -100,6 +110,7 @@ au BufRead,BufNewFile *.cpp set syntax=cpp11
 au BufRead,BufNewFile *.haml set filetype=ruby
 autocmd BufNewFile,BufRead *.html.erb set filetype=eruby
 au BufRead,BufNewFile *.scss set filetype=scss
+au BufRead,BufNewFile *.ts set filetype=typescript
 
 "   augroup NO_CURSOR_MOVE_ON_FOCUS
 "     au !
